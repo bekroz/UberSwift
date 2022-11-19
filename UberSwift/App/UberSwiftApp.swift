@@ -4,6 +4,7 @@
 //
 //  Created by BekRoz on 19/11/22.
 //
+//  Credits: AppStuff YT channel
 
 import SwiftUI
 
@@ -11,7 +12,7 @@ import SwiftUI
 struct UberSwiftApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

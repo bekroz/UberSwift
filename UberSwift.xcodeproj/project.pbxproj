@@ -18,6 +18,7 @@
 		F3D9DFA3292A347800EB9EE6 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9DFA2292A347800EB9EE6 /* LocationSearchView.swift */; };
 		F3D9DFA5292A38CF00EB9EE6 /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9DFA4292A38CF00EB9EE6 /* LocationSearchResultCell.swift */; };
 		F3D9DFA9292A413F00EB9EE6 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9DFA8292A413F00EB9EE6 /* LocationSearchViewModel.swift */; };
+		F3D9DFAB292A71C800EB9EE6 /* MapViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9DFAA292A71C800EB9EE6 /* MapViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		F3D9DFA2292A347800EB9EE6 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		F3D9DFA4292A38CF00EB9EE6 /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
 		F3D9DFA8292A413F00EB9EE6 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
+		F3D9DFAA292A71C800EB9EE6 /* MapViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		F3449F152928F7EE00021FA7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F3D9DFAA292A71C800EB9EE6 /* MapViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				F3D9DFA9292A413F00EB9EE6 /* LocationSearchViewModel.swift in Sources */,
 				F3D9DFA3292A347800EB9EE6 /* LocationSearchView.swift in Sources */,
 				F3449F1F2928FCFB00021FA7 /* LocationManager.swift in Sources */,
+				F3D9DFAB292A71C800EB9EE6 /* MapViewState.swift in Sources */,
 				F3D9DFA1292A33C300EB9EE6 /* MapViewActionButton.swift in Sources */,
 				F3449F062928F7D100021FA7 /* UberSwiftApp.swift in Sources */,
 				F3449F1D2928F8C400021FA7 /* UberMapViewRepresentable.swift in Sources */,

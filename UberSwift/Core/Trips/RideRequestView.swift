@@ -26,7 +26,9 @@ struct RideRequestView: View {
 
             RequestRideBtnView()
         }
+        .padding(.bottom, 24)
         .background(.white)
+        .cornerRadius(12)
     }
 }
 
@@ -94,6 +96,7 @@ struct ModalTopCapsuleView: View {
         Capsule()
             .foregroundColor(Color(.systemGray5))
             .frame(width: 48, height: 6)
+            .padding(.top, 8)
     }
 }
 
@@ -109,25 +112,37 @@ struct RideSuggestionHeaderView: View {
 }
 
 struct RideOptionView: View {
+    @State private var selectedRideType: RideType = .uberX
+    
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 12) {
-                ForEach(0 ..< 3, id: \.self) {
-                    _ in VStack(alignment: .leading) {
-                        Image(systemName: "uber-x")
+                ForEach(RideType.allCases) {
+                    type in VStack(alignment: .leading) {
+                        Image(type.imageName)
                             .resizable()
                             .scaledToFit()
-                        VStack {
-                            Text("Uber X")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(type.description)
                                 .font(.system(size: 14, weight: .semibold))
                             Text("$22.04")
                                 .font(.system(size: 14, weight: .semibold))
                         }
-                        .padding(8)
+                        .padding()
                     }
                     .frame(width: 125, height: 140)
-                    .background(Color(.systemGroupedBackground))
+                    .foregroundColor(type == selectedOption ? .white : .black)
+                    .background(Color(type ==
+                        selectedOption ?
+                        .systemBlue :
+                        .systemGroupedBackground))
+                    .scaleEffect(type == selectedOption ? 1.2 : 1.0)
                     .cornerRadius(10)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            selectedOption = type
+                        }
+                    }
                 }
             }
         }

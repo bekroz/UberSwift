@@ -10,21 +10,35 @@ import SwiftUI
 struct RideRequestView: View {
     var body: some View {
         VStack {
+            
             ModalTopCapsuleView()
-            // MARK: Trip info view
-            HStack {
-                IndicatorView()
-                NavigationInfoView()
-            }
-            .padding()
+
+            TripInfoContainerView()
+            
+            RideSuggestionHeaderView()
+            
+            RideOptionView()
             
             Divider()
+                .padding(.vertical, 8)
             
-            // MARK: ride type selection view
+            PaymentOptionView()
+
+            RequestRideBtnView()
         }
-            // MARK: payment option view
-            
-            // MARK: request ride button
+        .background(.white)
+    }
+}
+
+struct TripInfoContainerView: View {
+    var body: some View {
+        HStack {
+            IndicatorView()
+            NavigationInfoView()
+        }
+        .padding()
+        
+        Divider()
     }
 }
 
@@ -75,7 +89,6 @@ struct NavigationInfoView: View {
     }
 }
 
-
 struct ModalTopCapsuleView: View {
     var body: some View {
         Capsule()
@@ -84,6 +97,86 @@ struct ModalTopCapsuleView: View {
     }
 }
 
+struct RideSuggestionHeaderView: View {
+    var body: some View {
+        Text("Suggested Rides")
+            .font(.subheadline)
+            .fontWeight(.semibold)
+            .padding()
+            .foregroundColor(.gray)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct RideOptionView: View {
+    var body: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 12) {
+                ForEach(0 ..< 3, id: \.self) {
+                    _ in VStack(alignment: .leading) {
+                        Image(systemName: "uber-x")
+                            .resizable()
+                            .scaledToFit()
+                        VStack {
+                            Text("Uber X")
+                                .font(.system(size: 14, weight: .semibold))
+                            Text("$22.04")
+                                .font(.system(size: 14, weight: .semibold))
+                        }
+                        .padding(8)
+                    }
+                    .frame(width: 125, height: 140)
+                    .background(Color(.systemGroupedBackground))
+                    .cornerRadius(10)
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+}
+
+struct PaymentOptionView: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Text("Visa")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding(6)
+                .background(.blue)
+                .cornerRadius(4)
+                .foregroundColor(.white)
+                .padding(.leading)
+            
+            Text("**** 134")
+                .fontWeight(.bold)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .imageScale(.medium)
+                .padding()
+        }
+        .frame(height: 50)
+        .background(Color(.systemGroupedBackground))
+        .cornerRadius(10)
+        .padding(.horizontal)
+    }
+}
+
+struct RequestRideBtnView: View {
+    var body: some View {
+        Button {
+            
+        } label: {
+            Text("Confirm Ride")
+                .fontWeight(.bold)
+                .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                .background(.blue)
+                .cornerRadius(10)
+                .foregroundColor(.white)
+        }
+    }
+}
 struct RideRequestView_Previews: PreviewProvider {
     static var previews: some View {
         RideRequestView()

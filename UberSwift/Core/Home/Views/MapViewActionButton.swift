@@ -30,12 +30,14 @@ struct MapViewActionButton: View {
     
     func actionForState(_ state: MapViewState) {
         switch state {
-        case .noInput:
-            print("DEBUG: NoInput \(state)")
-        case .searchingForLocation, .locationSelected:
-            print("DEBUG: Searching for location \(state)")
+        case .searchingForLocation:
             mapState = .noInput
-            viewModel.selectedLocationCoordinate = nil
+        case .locationSelected, .polylineAdded:
+            mapState = .noInput
+            viewModel.selectedUberLocation = nil
+        default:
+            print("DEBUG: NoInput")
+            break
         }
         
     }
@@ -44,7 +46,7 @@ struct MapViewActionButton: View {
         switch state {
         case .noInput:
             return "line.3.horizontal"
-        case .searchingForLocation, .locationSelected:
+        default:
             return "arrow.left"
         }
     }

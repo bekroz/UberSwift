@@ -10,7 +10,6 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     static let shared = LocationManager()
-    
     @Published var userLocation: CLLocationCoordinate2D?
     
     override init() {

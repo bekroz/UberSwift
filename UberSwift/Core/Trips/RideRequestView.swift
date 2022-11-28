@@ -27,7 +27,7 @@ struct RideRequestView: View {
             RequestRideBtnView()
         }
         .padding(.bottom, 24)
-        .background(.white)
+        .background(Color.theme.backgroundColor)
         .cornerRadius(12)
     }
 }
@@ -61,16 +61,19 @@ struct IndicatorView: View {
 }
 
 struct NavigationInfoView: View {
+    @EnvironmentObject var locationVM: LocationSearchViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
-                Text("Current location")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.gray)
+                if let location = locationVM.selectedUberLocation {
+                    Text(location.title)
+                        .font(.system(size: 16, weight: .semibold))
+                }
                 
                 Spacer()
                 
-                Text("1:30 PM")
+                Text(locationVM.pickupTime ?? "")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.gray)
             }
@@ -82,7 +85,7 @@ struct NavigationInfoView: View {
                 
                 Spacer()
                 
-                Text("1:30 PM")
+                Text(locationVM.dropOffTime ?? "")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.gray)
             }
@@ -113,7 +116,7 @@ struct RideSuggestionHeaderView: View {
 
 struct RideOptionView: View {
     @State private var selectedOption: RideType = .uberX
-    @EnvironmentObject var locationViewModel: LocationSearchViewModel
+    @EnvironmentObject var locationVM: LocationSearchViewModel
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -126,17 +129,16 @@ struct RideOptionView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(type.description)
                                 .font(.system(size: 14, weight: .semibold))
-                            Text("$\(locationViewModel.computeRidePrice(forType: type))")
+                            Text(locationVM.computeRidePrice(forType: type).toCurrency())
                                 .font(.system(size: 14, weight: .semibold))
                         }
                         .padding()
                     }
                     .frame(width: 125, height: 140)
-                    .foregroundColor(type == selectedOption ? .white : .black)
-                    .background(Color(type ==
+                    .foregroundColor(type == selectedOption ? .white : Color.theme.primaryTextColor)
+                    .background(type ==
                         selectedOption ?
-                        .systemBlue :
-                        .systemGroupedBackground))
+                        .blue : Color.theme.secondaryBackgroundColor)
                     .scaleEffect(type == selectedOption ? 1.2 : 1.0)
                     .cornerRadius(10)
                     .onTapGesture {
@@ -173,7 +175,7 @@ struct PaymentOptionView: View {
                 .padding()
         }
         .frame(height: 50)
-        .background(Color(.systemGroupedBackground))
+        .background(Color.theme.secondaryBackgroundColor)
         .cornerRadius(10)
         .padding(.horizontal)
     }
@@ -193,6 +195,7 @@ struct RequestRideBtnView: View {
         }
     }
 }
+
 struct RideRequestView_Previews: PreviewProvider {
     static var previews: some View {
         RideRequestView()
